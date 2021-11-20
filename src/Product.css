@@ -9,14 +9,18 @@
   max-height: 400px;
   min-width: 100px;
   background-color: white;
-  z-index: -1;
+  z-index: 1;
 }
 .product__info {
   height: 100px;
   margin-bottom: 15px;
+  width: 100%;
 }
 .product__price {
   margin-top: 5px;
+}
+.product__rating {
+  display: flex;
 }
 .product > img {
   max-height: 200px;
