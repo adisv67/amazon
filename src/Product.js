@@ -4,7 +4,7 @@ import { useStateValue } from './StateProvider';
 
 function Product({ id, title, image, price, rating}) {
     const [{basket}, dispatch] = useStateValue();
-    console.log("random stuff")
+    //console.log("random stuff")
 
     const addTobasket = ()=> {
         dispatch({
