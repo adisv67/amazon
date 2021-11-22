@@ -28,7 +28,8 @@ function Header() {
                 <Link to='/login'>
                     <div onClick={handleAuthentication} className='header__option'>
                         <span className='header__optionLineOne'>Hello Guest</span>
-                        <span className='header__optionLineTwo'>{ user ? 'Sign Out':'Sign In' }</span>
+                        <span className='header__optionLineTwo'>{ user ? 'Sign Out':'Sign In'}</span>
+                        console.log('condition', user)
                     </div>
                 </Link>
                 <div className='header__option'>
