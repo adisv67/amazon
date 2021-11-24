@@ -1,12 +1,27 @@
-import React from 'react'
-import Checkout from './Checkout'
-import CheckoutProduct from './CheckoutProduct'
+import React, { useState } from 'react'
 import './Payment.css'
 import { useStateValue } from './StateProvider'
+import CheckoutProduct from './CheckoutProduct'
 import { Link } from 'react-router-dom'
+import { CardElement, useStripe, useElements} from '@stripe/react-stripe-js'
 
 function Payment() {
     const [{basket, user}, dispatch] = useStateValue();
+
+    const stripe = useStripe();
+    const elements = useElements();
+
+    const [error,setError] = useState(null);
+    const [disabled, setDisabled] = useState(true);
+
+    const handleSubmit= e =>{
+
+    }
+    const handleChange= e =>{
+        setDisabled(e.empty);
+        setError(e.error ? e.error.message : "");
+    }
+
     return (
         <div className="payment">
             <div className="payment__container">
@@ -25,7 +40,7 @@ function Payment() {
                 </div>
                 <div className="payment__section">
                     <div className="payment__title">
-                        <h3>Review Items and Delivery</h3>
+                        <h3>Review Items & Delivery</h3>
                     </div>
                     <div className="payment__items">
                         {basket.map(item =>(
@@ -39,14 +54,16 @@ function Payment() {
                         ))}
                     </div>
                 </div>  
-                <div className="payment__section">
-                    <div className="payment__title">
-                        <h3>Payment Method</h3>
-                    </div>
-                    <div className="payment__deails">
-
-                    </div>
-                </div>           
+                        <div className="payment__section">
+                            <div className="payment__title">
+                                <h3>Payment Method</h3>
+                            </div>
+                            <div className="payment__details">
+                                <form onSubmit={handleSubmit}>
+                                        <CardElement onChange={handleChange}/>
+                                </form>
+                            </div>
+                        </div>           
             </div>
         </div>
     )

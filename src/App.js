@@ -17,6 +17,7 @@ const promise = loadStripe(
 
 function App() {
   const [{}, dispatch] = useStateValue();
+  
   useEffect(() => {
     auth.onAuthStateChanged(authUser =>{
       console.log('You are', authUser);
@@ -48,7 +49,9 @@ function App() {
               </Route>
               <Route path="/payment"> 
                 <Header />
+                <Elements stripe={promise}>
                 <Payment />
+                </Elements>
               </Route>
               <Route path="/">
                 <Header />  
