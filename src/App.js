@@ -1,4 +1,4 @@
-import React , { useEffect } from 'react';
+import React , { useEffect, useState } from 'react';
 import './App.css';
 import Header from './Header';
 import Home from './Home';
@@ -7,9 +7,11 @@ import Checkout from './Checkout';
 import Login from './Login';
 import { auth } from './firebase';
 import { useStateValue } from './StateProvider'
+import Order from './Order.js';
 import  Payment  from './Payment'
 import { loadStripe } from '@stripe/stripe-js'
 import { Elements } from '@stripe/react-stripe-js'
+
 
 const promise = loadStripe(
   "pk_test_51JyxCCSExlE9MzQ0oPlAKtakObV66rcuNcx6iEEcggZBSPGmNbonnWLuiGbldWYqfrFuBSVWRQkjIQxlaxa0NBu400VCCKAHdX"
@@ -17,6 +19,7 @@ const promise = loadStripe(
 
 function App() {
   const [{}, dispatch] = useStateValue();
+  
   
   useEffect(() => {
     auth.onAuthStateChanged(authUser =>{
@@ -46,6 +49,10 @@ function App() {
               <Route path="/checkout"> 
                 <Header />
                 <Checkout/> 
+              </Route>
+              <Route path="/order"> 
+                <Header />
+                <Order/> 
               </Route>
               <Route path="/payment"> 
                 <Header />
