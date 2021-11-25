@@ -46,7 +46,7 @@ function Payment() {
             //payment confirmation
             db
             .collection('users')
-            .doc(user?.id)
+            .doc(user?.uid)
             .collection('order')
             .doc(paymentIntent)
             .set({
